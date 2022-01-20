@@ -10,31 +10,12 @@
 const divContainer = document.querySelector(".grid-container");
 
 
-
-// for (let i = 0; i < 16; i++){
-//     const newDiv = document.createElement("div");
-//     newDiv.classList.add("grid-item");
-//     divRow.appendChild(newDiv);
-// }
-
-// const divRow2 = document.createElement("div");
-// divRow2.classList.add("grid-row");
-// divContainer.appendChild(divRow2);
-
-// for (let i =0; i < 16; i++){
-//     const newDiv = document.createElement("div");
-//     newDiv.classList.add("grid-item");
-//     newDiv.style.borderColor = "red";
-//     divRow2.appendChild(newDiv);
-// }
-
-for (let i = 0; i < 16; i++){
-    // Define loop for col 1,2,3,4,etc
+for (let i = 0; i < 16; i++){ // Defines the amount of rows 
     const divRow = document.createElement("div");
     divRow.classList.add("grid-row");
     divContainer.appendChild(divRow);
 
-    for( let j = 0; j < 16; j++){
+    for( let j = 0; j < 16; j++){ // Defines the items in the grid
         const newDiv = document.createElement("div");
         newDiv.classList.add("grid-item");
         divRow.appendChild(newDiv);
