@@ -9,19 +9,34 @@
 // Option 1: float and clear
 const divContainer = document.querySelector(".grid-container");
 
+
+
+// for (let i = 0; i < 16; i++){
+//     const newDiv = document.createElement("div");
+//     newDiv.classList.add("grid-item");
+//     divRow.appendChild(newDiv);
+// }
+
+// const divRow2 = document.createElement("div");
+// divRow2.classList.add("grid-row");
+// divContainer.appendChild(divRow2);
+
+// for (let i =0; i < 16; i++){
+//     const newDiv = document.createElement("div");
+//     newDiv.classList.add("grid-item");
+//     newDiv.style.borderColor = "red";
+//     divRow2.appendChild(newDiv);
+// }
+
 for (let i = 0; i < 16; i++){
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("grid-item");
-    divContainer.appendChild(newDiv);
-}
+    // Define loop for col 1,2,3,4,etc
+    const divRow = document.createElement("div");
+    divRow.classList.add("grid-row");
+    divContainer.appendChild(divRow);
 
-const newDiv = document.createElement("div");
-newDiv.classList.add("grid-test");
-newDiv.setAttribute("style", "border-color:green");
-divContainer.appendChild(newDiv);
-
-for (let i =0; i < 16; i++){
-    const newDivColumn = document.createElement("div");
-    newDivColumn.classList.add("grid-col");
-    divContainer.appendChild(newDivColumn);
+    for( let j = 0; j < 16; j++){
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("grid-item");
+        divRow.appendChild(newDiv);
+    }
 }
