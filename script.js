@@ -6,9 +6,8 @@
     // Individual squares are empty
 
 
-// Option 1: float and clear
+// Option 2: Flexbox 
 const divContainer = document.querySelector(".grid-container");
-
 
 for (let i = 0; i < 16; i++){ // Defines the amount of rows 
     const divRow = document.createElement("div");
@@ -21,3 +20,4 @@ for (let i = 0; i < 16; i++){ // Defines the amount of rows
         divRow.appendChild(newDiv);
     }
 }
+
