@@ -6,14 +6,15 @@ html, body{
 
 .grid-container{
     display: flex;
-    width: 400px;
-    height: 400px;
+    width: 100% ;
+    height: 100%;
     background-color: blanchedalmond;
     justify-content: center;
     align-items: center;
+    flex-flow: row wrap;
 }
 
-.grid-row{
+.grid-col{
     border-color: green;
 }
 
