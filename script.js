@@ -6,15 +6,21 @@
     // Individual squares are empty
 
 
-// Option 2: Flexbox 
+let squareNumber = 20;
+
+const smallBtn = document.querySelector("#small-grid");
+smallBtn.addEventListener("click", () => {
+    squareNumber = 20;
+})
+
 const divContainer = document.querySelector(".grid-container");
 
-for (let i = 0; i < 16; i++){ // Outer loop initializes column 0, 1, 2, etc.. 
+for (let i = 0; i < squareNumber; i++){ // Outer loop initializes column 0, 1, 2, etc.. 
     const divCol = document.createElement("div");
     divCol.classList.add("grid-col");
     divContainer.appendChild(divCol);
 
-    for( let j = 0; j < 16; j++){ // Inner loop initializes the items in the column
+    for( let j = 0; j < squareNumber; j++){ // Inner loop initializes the items in the column
         const newDiv = document.createElement("div");
         newDiv.classList.add("grid-item");
         divCol.appendChild(newDiv);
@@ -26,6 +32,7 @@ items.forEach((item) => item.addEventListener("mouseover", () => {
     // e.target.style.backgroundColor = "orange"; // Method 1, using css styling
     item.classList.add("filled"); // Method 2, using classes
 }));
+
 
 const resetBtn = document.querySelector("#reset-btn");
 resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled")));

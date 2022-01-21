@@ -10,40 +10,48 @@ body{
     align-items: center;
 }
 
+@font-face {
+    font-family: myRobotic;
+    src: url(humanoid/HUMANOID.TTF);
+}
+
 .grid-container{
     display: flex;
-    width: 100% ;
-    height: 100%;
+    width: 480px ;
+    height: 480px;
     background-color: blanchedalmond;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
-}
-
-.grid-col{
-    border-color: green;
+    border: 2px solid black
 }
 
 .grid-item,
 .filled {
-    height: 0.1625%; /* 1/16 of the whole grid */ 
-    width: 0.1625%; /* 1/16 of the whole grid */
-    border: 3px solid black;
-    margin: 2px;
-    padding: 5px;
+    /* height: 6.25%; */ 
+    /* width: 6.25%;  */
+    background-color: white ;
+    border: 0px solid black;
+    margin: 0px;
+    padding: 12px;
 }
 
 .filled{
     background-color: black;
 }
 
-#reset-btn{
+button{
     display: flex;
     border-radius: 10px;
-    height: 40px;
-    width: 80px;
     justify-content: center;
     align-items: center;
     padding: 5px;
     margin: 20px;
+}
+
+#reset-btn{
+    height: 40px;
+    width: 80px;
+    font-family: myRobotic;
+    font-size: 24px;
 }
