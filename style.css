@@ -10,6 +10,13 @@ body{
     align-items: center;
 }
 
+header{
+    font-size: large;
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serifs;
+}
+
 @font-face {
     font-family: myRobotic;
     src: url(humanoid/HUMANOID.TTF);
