@@ -21,5 +21,14 @@ for (let i = 0; i < 16; i++){ // Outer loop initializes column 0, 1, 2, etc..
     }
 }
 
+const items = document.querySelectorAll(".grid-item");
+items.forEach((item) => item.addEventListener("mouseover", () => {
+    // e.target.style.backgroundColor = "orange"; // Method 1, using css styling
+    item.classList.add("filled"); // Method 2, using classes
+}));
+
+const resetBtn = document.querySelector("#reset-btn");
+resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled")));
+
 
 
