@@ -47,6 +47,7 @@ header{
     background-color: black;
 }
 
+
 button{
     display: flex;
     border-radius: 10px;
@@ -54,6 +55,12 @@ button{
     align-items: center;
     padding: 5px;
     margin: 20px;
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row nowrap;
 }
 
 #reset-btn{
