@@ -9,10 +9,11 @@ function startup(){
     reset();
 }
 
+// Select the whole container of the grid
+const divContainer = document.querySelector(".grid-container"); // Create div container for grid
+
 // Creating the grid with default 20x20 squares 
 function createGrid(squareNumber = 20) {
-    const divContainer = document.querySelector(".grid-container"); // Create div container for grid
-    
     for(let i = 0; i < squareNumber; i++){ // Outer loop initializes column 0, 1, 2, etc.. 
         const divCol = document.createElement("div");
         divCol.classList.add("grid-col");
@@ -26,6 +27,7 @@ function createGrid(squareNumber = 20) {
     }    
 }
 
+// Function to select the color using input type=color 
 function colorSelector(){
     const defaultColor = "#000000";
     var colorWell = document.querySelector("#colorWell");
@@ -44,19 +46,19 @@ function deleteGrid(){
 
 // Make the grid items background black on mouseover by adding the class filled or using css styling
 function changeBackground(){
-    const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.addEventListener("mouseover", (e) => {
-        e.target.style.backgroundColor = colorWell.value; // Method 1, using css styling
-        //item.classList.add("filled"); // Method 2, using classes
-    }));
+    divContainer.addEventListener("mouseover", (e) => {
+        if(e.target && e.target.className === "grid-item") {
+            e.target.style.backgroundColor = colorWell.value;
+        }
+    })
 }
 
+// Button to make the background color of the items in the grid white again by removing class filled
 function reset(){
-    // Button to make the background color of the items in the grid white again by removing class filled
     const resetBtn = document.querySelector("#reset-btn");
     const items = document.querySelectorAll(".grid-item");
     // resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled"))); method 2
-    resetBtn.addEventListener("click", () => items.forEach((item) => item.style.backgroundColor ="white"))
+    resetBtn.addEventListener("click", () => items.forEach((item) => item.style.backgroundColor ="white"));
 }
 
 // Button which deletes grid and makes a new one with 20x20 grid
@@ -64,7 +66,6 @@ const smallBtn = document.querySelector(".small-grid");
 smallBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(20);
-    changeBackground();
     reset();
     const items = document.querySelectorAll(".grid-item");
     items.forEach((item) => item.style.padding = "12px");
@@ -75,7 +76,6 @@ const medBtn = document.querySelector(".med-grid");
 medBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(30);
-    changeBackground();
     reset();
     const items = document.querySelectorAll(".grid-item");
     items.forEach((item) => item.style.padding = "8px");
@@ -86,8 +86,10 @@ const largeBtn = document.querySelector(".large-grid");
 largeBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(40);
-    changeBackground();
     reset();    
-    const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.style.padding = "6px");
+    document.querySelectorAll(".grid-item").forEach((item) => item.style.padding = "6px");
 });
+
+// When pressing the button for a new grid, I want select all items and turn their background color white through e.target.style.backgroundColor = "white"
+// Is it possible to do this through event delegation/bubbling/capturing?
+// Since there is no event taking place except the button being pressed

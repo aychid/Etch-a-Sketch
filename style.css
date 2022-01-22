@@ -1,7 +1,4 @@
-html, body{
-    margin: 0px;
-    padding: 0px;
-    font-family: sans-serif;
+:root{
     background-color: blanchedalmond;
 }
 
@@ -9,6 +6,9 @@ body{
     display:flex;
     flex-flow: column wrap;
     align-items: center;
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
 }
 
 header{
