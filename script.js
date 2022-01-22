@@ -1,7 +1,18 @@
-const divContainer = document.querySelector(".grid-container");
+// Global initiation function on load
+window.addEventListener("load", startup, false)
+
+// Initialize colour selector, create the grid, background selector and reset for when opening the website 
+function startup(){
+    colorSelector();
+    createGrid();
+    changeBackground();
+    reset();
+}
 
 // Creating the grid with default 20x20 squares 
 function createGrid(squareNumber = 20) {
+    const divContainer = document.querySelector(".grid-container"); // Create div container for grid
+    
     for(let i = 0; i < squareNumber; i++){ // Outer loop initializes column 0, 1, 2, etc.. 
         const divCol = document.createElement("div");
         divCol.classList.add("grid-col");
@@ -15,10 +26,13 @@ function createGrid(squareNumber = 20) {
     }    
 }
 
-// Initialize grid toggle and reset for when opening the website 
-createGrid();
-changeBackground();
-reset();
+function colorSelector(){
+    const defaultColor = "#000000";
+    var colorWell = document.querySelector("#colorWell");
+    colorWell.value = defaultColor;
+    colorWell.addEventListener("change", null, false);
+    colorWell.select();
+}
 
 // Delete the grid by selecting all div's made with createGrid and removing them 
 function deleteGrid(){
@@ -28,12 +42,12 @@ function deleteGrid(){
     gridCol.forEach((col) => col.remove());
 }
 
+// Make the grid items background black on mouseover by adding the class filled or using css styling
 function changeBackground(){
-    // Make the grid items background black on mouseover by adding the class filled
     const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.addEventListener("mouseover", () => {
-        // e.target.style.backgroundColor = "orange"; // Method 1, using css styling
-        item.classList.add("filled"); // Method 2, using classes
+    items.forEach((item) => item.addEventListener("mouseover", (e) => {
+        e.target.style.backgroundColor = colorWell.value; // Method 1, using css styling
+        //item.classList.add("filled"); // Method 2, using classes
     }));
 }
 
@@ -41,35 +55,35 @@ function reset(){
     // Button to make the background color of the items in the grid white again by removing class filled
     const resetBtn = document.querySelector("#reset-btn");
     const items = document.querySelectorAll(".grid-item");
-    resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled")));
+    // resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled"))); method 2
+    resetBtn.addEventListener("click", () => items.forEach((item) => item.style.backgroundColor ="white"))
 }
 
+// Button which deletes grid and makes a new one with 20x20 grid
 const smallBtn = document.querySelector(".small-grid");
 smallBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(20);
     changeBackground();
-    reset();    
+    reset();
     const items = document.querySelectorAll(".grid-item");
     items.forEach((item) => item.style.padding = "12px");
-    console.log(items.length)
 });
 
+// Button which deletes grid and makes a new one with 30x30 grid, padding is changed to compensate for the increasing amount of grid-items
 const medBtn = document.querySelector(".med-grid");
 medBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(30);
     changeBackground();
-    reset();    
+    reset();
     const items = document.querySelectorAll(".grid-item");
     items.forEach((item) => item.style.padding = "8px");
-    console.log(items.length)
 });
 
-// Button to delete old grid, initialize a new one of 40x40 items. 
-// To compensate for increasing the amount of items, padding needs to shrink down (12px -> 6px), so add class big
-const bigBtn = document.querySelector(".large-grid");
-bigBtn.addEventListener("click", () => {
+// Button which deletes grid and makes a new one with 40x40 grid, padding is changed to compensate for the increasing amount of grid-items
+const largeBtn = document.querySelector(".large-grid");
+largeBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(40);
     changeBackground();
