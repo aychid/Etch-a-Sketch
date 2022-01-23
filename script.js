@@ -7,6 +7,7 @@ function startup(){
     createGrid();
     changeBackground();
     reset();
+    eraserButtonActivator();    
 }
 
 // Select the whole container of the grid
@@ -53,6 +54,21 @@ function changeBackground(){
     })
 }
 
+// Makes background white of grid-item
+function backgroundEraser(){
+    divContainer.addEventListener("mouseover", (e) => {
+        if(e.target && e.target.className === "grid-item") {
+            e.target.style.backgroundColor = "white"; 
+        }
+    })
+}
+
+// Activates the eraser button
+function eraserButtonActivator(){
+    const eraserBtn = document.querySelector("#eraser-btn");
+    eraserBtn.addEventListener("click", backgroundEraser);
+}
+
 // Button to make the background color of the items in the grid white again by removing class filled
 function reset(){
     const resetBtn = document.querySelector("#reset-btn");
@@ -64,11 +80,15 @@ function reset(){
 // Button which deletes grid and makes a new one with 20x20 grid
 const smallBtn = document.querySelector(".small-grid");
 smallBtn.addEventListener("click", () => {
+    let gridSize = 20;
     deleteGrid();
-    createGrid(20);
+    createGrid(gridSize);
     reset();
     const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.style.padding = "12px");
+    items.forEach((item) => {
+        item.style.height = divContainer.clientHeight / gridSize + "px" ;
+        item.style.width = "24px";
+    });
 });
 
 // Button which deletes grid and makes a new one with 30x30 grid, padding is changed to compensate for the increasing amount of grid-items
@@ -78,7 +98,10 @@ medBtn.addEventListener("click", () => {
     createGrid(30);
     reset();
     const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.style.padding = "8px");
+    items.forEach((item) => {
+        item.style.height = "16px";
+        item.style.width = "16px";
+    });
 });
 
 // Button which deletes grid and makes a new one with 40x40 grid, padding is changed to compensate for the increasing amount of grid-items
@@ -87,9 +110,13 @@ largeBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(40);
     reset();    
-    document.querySelectorAll(".grid-item").forEach((item) => item.style.padding = "6px");
+    document.querySelectorAll(".grid-item").forEach((item) => {
+        item.style.height = "12px";
+        item.style.width = "12px";
+    });
 });
 
 // When pressing the button for a new grid, I want select all items and turn their background color white through e.target.style.backgroundColor = "white"
 // Is it possible to do this through event delegation/bubbling/capturing?
 // Since there is no event taking place except the button being pressed
+

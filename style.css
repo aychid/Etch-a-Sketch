@@ -50,12 +50,18 @@ header{
     border: 2px solid black
 }
 
+.function-buttons{
+    display:flex;
+    flex-flow: row wrap;
+}
+
 .grid-item,
 .filled {
     background-color: white ;
     border: 0px solid black;
     margin: 0px;
-    padding: 12px;
+    height:24px;
+    width:24px
 }
 
 button{
@@ -77,10 +83,12 @@ button{
     flex-flow: row nowrap;
 }
 
-#reset-btn{
+#reset-btn, #eraser-btn{
     font-family: myRobotic;
     font-size: 36px;
 }
+
+
 
 .color-container{
     height: 60px;
