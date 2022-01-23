@@ -33,7 +33,7 @@ function colorSelector(){
     const defaultColor = "#000000";
     var colorWell = document.querySelector("#colorWell");
     colorWell.value = defaultColor;
-    colorWell.addEventListener("change", null, false);
+    colorWell.addEventListener("change", changeBackground, false);
     colorWell.select();
 }
 
