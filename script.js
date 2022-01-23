@@ -1,4 +1,17 @@
-const divContainer = document.querySelector(".grid-container");
+// Global initiation function on load
+window.addEventListener("load", startup, false)
+
+// Initialize colour selector, create the grid, background selector, reset and eraser for when opening the website 
+function startup(){
+    colorSelector();
+    createGrid();
+    changeBackground();
+    reset();
+    eraserButtonActivator();    
+}
+
+// Select the whole container of the grid
+const divContainer = document.querySelector(".grid-container"); // Create div container for grid
 
 // Creating the grid with default 20x20 squares 
 function createGrid(squareNumber = 20) {
@@ -15,10 +28,14 @@ function createGrid(squareNumber = 20) {
     }    
 }
 
-// Initialize grid toggle and reset for when opening the website 
-createGrid();
-changeBackground();
-reset();
+// Function to select the color using input type=color 
+function colorSelector(){
+    const defaultColor = "#000000";
+    var colorWell = document.querySelector("#colorWell");
+    colorWell.value = defaultColor;
+    colorWell.addEventListener("change", null, false);
+    colorWell.select();
+}
 
 // Delete the grid by selecting all div's made with createGrid and removing them 
 function deleteGrid(){
@@ -28,52 +45,79 @@ function deleteGrid(){
     gridCol.forEach((col) => col.remove());
 }
 
+// Make the grid items background black on mouseover by adding the class filled or using css styling
 function changeBackground(){
-    // Make the grid items background black on mouseover by adding the class filled
-    const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.addEventListener("mouseover", () => {
-        // e.target.style.backgroundColor = "orange"; // Method 1, using css styling
-        item.classList.add("filled"); // Method 2, using classes
-    }));
+    divContainer.addEventListener("mouseover", (e) => {
+        if(e.target && e.target.className === "grid-item") {
+            e.target.style.backgroundColor = colorWell.value;
+        }
+    })
 }
 
+// Makes background white of grid-item
+function backgroundEraser(){
+    divContainer.addEventListener("mouseover", (e) => {
+        if(e.target && e.target.className === "grid-item") {
+            e.target.style.backgroundColor = "white"; 
+        }
+    })
+}
+
+// Activates the eraser button
+function eraserButtonActivator(){
+    const eraserBtn = document.querySelector("#eraser-btn");
+    eraserBtn.addEventListener("click", backgroundEraser);
+}
+
+// Button to make the background color of the items in the grid white again by removing class filled
 function reset(){
-    // Button to make the background color of the items in the grid white again by removing class filled
     const resetBtn = document.querySelector("#reset-btn");
     const items = document.querySelectorAll(".grid-item");
-    resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled")));
+    // resetBtn.addEventListener("click", () => items.forEach((item) => item.classList.remove("filled"))); method 2
+    resetBtn.addEventListener("click", () => items.forEach((item) => item.style.backgroundColor ="white"));
 }
 
+// Button which deletes grid and makes a new one with 20x20 grid
 const smallBtn = document.querySelector(".small-grid");
 smallBtn.addEventListener("click", () => {
+    let gridSize = 20;
     deleteGrid();
-    createGrid(20);
-    changeBackground();
-    reset();    
+    createGrid(gridSize);
+    reset();
     const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.style.padding = "12px");
-    console.log(items.length)
+    items.forEach((item) => {
+        item.style.height = divContainer.clientHeight / gridSize + "px" ;
+        item.style.width = "24px";
+    });
 });
 
+// Button which deletes grid and makes a new one with 30x30 grid, padding is changed to compensate for the increasing amount of grid-items
 const medBtn = document.querySelector(".med-grid");
 medBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(30);
-    changeBackground();
-    reset();    
+    reset();
     const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.style.padding = "8px");
-    console.log(items.length)
+    items.forEach((item) => {
+        item.style.height = "16px";
+        item.style.width = "16px";
+    });
 });
 
-// Button to delete old grid, initialize a new one of 40x40 items. 
-// To compensate for increasing the amount of items, padding needs to shrink down (12px -> 6px), so add class big
-const bigBtn = document.querySelector(".large-grid");
-bigBtn.addEventListener("click", () => {
+// Button which deletes grid and makes a new one with 40x40 grid, padding is changed to compensate for the increasing amount of grid-items
+const largeBtn = document.querySelector(".large-grid");
+largeBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(40);
-    changeBackground();
     reset();    
-    const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => item.style.padding = "6px");
+    document.querySelectorAll(".grid-item").forEach((item) => {
+        item.style.height = "12px";
+        item.style.width = "12px";
+    });
 });
+
+// TODO
+// When pressing the button for a new grid, I want select all items and turn their background color white through e.target.style.backgroundColor = "white"
+// Is it possible to do this through event delegation/bubbling/capturing?
+// Since there is no event taking place except the button being pressed
+

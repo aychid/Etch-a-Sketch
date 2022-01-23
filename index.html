@@ -11,12 +11,23 @@
 
 <body>
     <header> Etch-a-Sketch </header>
-    <button id="reset-btn"> RESET </button>
-    <div class="button-container">
-        <button class="small-grid"> 20x20 </button>
-        <button class="med-grid"> 30x30 </button>
-        <button class="large-grid"> 40x40 </button>
+    <div class="content">
+        <div class="left-side-content"> 
+            <div class ="function-buttons"> 
+                <button id="reset-btn"> RESET </button>
+                <button id="eraser-btn"> Eraser </button>
+            </div>
+            <div class="button-container">
+                <button class="small-grid"> 20x20 </button>
+                <button class="med-grid"> 30x30 </button>
+                <button class="large-grid"> 40x40 </button>
+            </div>
+            <div class="color-container"> 
+                <label for="colorWell">Color:</label>
+                <input type="color" value="#000000" id="colorWell">
+            </div>
+        </div>  
+        <div class="grid-container"> </div> 
     </div>
-    <div class="grid-container"> </div>
 </body>
 </html>
