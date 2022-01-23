@@ -1,7 +1,7 @@
 // Global initiation function on load
 window.addEventListener("load", startup, false)
 
-// Initialize colour selector, create the grid, background selector and reset for when opening the website 
+// Initialize colour selector, create the grid, background selector, reset and eraser for when opening the website 
 function startup(){
     colorSelector();
     createGrid();
@@ -116,6 +116,7 @@ largeBtn.addEventListener("click", () => {
     });
 });
 
+// TODO
 // When pressing the button for a new grid, I want select all items and turn their background color white through e.target.style.backgroundColor = "white"
 // Is it possible to do this through event delegation/bubbling/capturing?
 // Since there is no event taking place except the button being pressed
